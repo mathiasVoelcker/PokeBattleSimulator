@@ -1,0 +1,38 @@
+<%= form_for :simulation, url: simulation_simulate_path do |f|%>
+<div class="field">
+  <label>Attacking Pokemon</label>
+  <div class="row">
+    <div class="col-md-4">
+        <%= f.collection_select :attacking_pokemon_id, Pokemon.all, :id, :context, {},  { class: "form-control" } %>
+    </div>
+    <p>
+      Didn't find your pokemon? <a href="/pokemons/new">click here</a>
+    </p>
+  </div>
+  <label>Move</label>
+  <div class="row">
+    <div class="col-md-4">
+        <%= f.collection_select :attack_id, Attack.all, :id, :context, {},  { class: "form-control" } %>
+    </div>
+    <p>
+      Didn't find your attack? <a href="/attacks/new">click here</a>
+    </p>
+  </div>
+  <label>Defending Pokemon</label>
+  <div class="row">
+    <div class="col-md-4">
+        <%= f.collection_select :defending_pokemon_id, Pokemon.all, :id, :context, {},  { class: "form-control" } %>
+    </div>
+    <p>
+      Didn't find your pokemon? <a href="/pokemons/new">click here</a>
+    </p>
+  </div>
+  <div class="row">
+    <%= f.submit "Simulate Battle", class: "btn btn-default" %>
+  </div>
+  <div class="row">
+    <%= render partial: 'simulate' %>
+  </div>
+</div>
+
+<% end %>

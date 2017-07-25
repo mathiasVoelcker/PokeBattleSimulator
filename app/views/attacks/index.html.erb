@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Moves</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Base power</th>
+      <th>Element</th>
+      <th>Type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attacks.each do |attack| %>
+      <tr>
+        <td><%= attack.name %></td>
+        <td><%= attack.base_power %></td>
+        <td><%= @elements.find(attack.element_id).name %></td>
+        <td><%= @attack_types.find(attack.attack_type_id).name %></td>
+        <td><%= link_to 'Show', attack %></td>
+        <td><%= link_to 'Edit', edit_attack_path(attack) %></td>
+        <td><%= link_to 'Destroy', attack, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Attack', new_attack_path %>

@@ -1,0 +1,6 @@
+<% if @simulation != nil %>
+<div class="container">
+  <h4 class="row">Pokemon <%= @attacking_pokemon_species.name%> have attacked <%= @defending_pokemon_species.name %></h4>
+  <h4 class="row"><%= @defending_pokemon_species.name %> HP dropped from <%= @hp_before%> to <%= @hp_after%></h4>
+</div>
+<% end %>

@@ -1,0 +1,37 @@
+<%= form_with(model: attack, local: true) do |form| %>
+<% if attack.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(attack.errors.count, "error") %> prohibited this attack from being saved:</h2>
+
+  <ul>
+    <% attack.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="field">
+  <%= form.label :name %>
+  <%= form.text_field :name, id: :attack_name %>
+</div>
+
+<div class="field">
+  <%= form.label :base_power %>
+  <%= form.number_field :base_power, id: :attack_base_power %>
+</div>
+
+<div class="field">
+  <%= form.label :element %>
+  <%= form.select :element_id, @elements.collect { |element| [element.name, element.id]} %>
+</div>
+
+<div class="field">
+  <%= form.label :type %>
+  <%= form.select :attack_type_id, @attack_types.collect { |type| [type.name, type.id] } %>
+</div>
+
+<div class="actions">
+  <%= form.submit %>
+</div>
+<% end %>

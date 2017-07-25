@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @pokemon_specy.id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pokemon_specy.name %>
+</p>
+
+<p>
+  <strong>HP:</strong>
+  <%= @pokemon_specy.hp %>
+</p>
+
+<p>
+  <strong>Attack:</strong>
+  <%= @pokemon_specy.attack %>
+</p>
+
+<p>
+  <strong>Defense:</strong>
+  <%= @pokemon_specy.defense %>
+</p>
+
+<p>
+  <strong>Special Attack:</strong>
+  <%= @pokemon_specy.sp_attack %>
+</p>
+
+<p>
+  <strong>Special Defense:</strong>
+  <%= @pokemon_specy.sp_defense %>
+</p>
+
+<p>
+  <strong>Speed:</strong>
+  <%= @pokemon_specy.speed %>
+</p>
+
+<%= link_to 'Edit', edit_pokemon_specy_path(@pokemon_specy) %> |
+<%= link_to 'Back', pokemon_species_path %>
