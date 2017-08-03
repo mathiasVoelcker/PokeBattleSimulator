@@ -18,6 +18,12 @@
       Didn't find your attack? <a href="/attacks/new">click here</a>
     </p>
   </div>
+  <label>Modifier</label>
+  <div class="row">
+    <div class="col-md-4">
+      <%= f.number_field :modifier, id: :simulation_modifier, :class => "form-control", :value => 1 %>
+    </div>
+  </div>
   <label>Defending Pokemon</label>
   <div class="row">
     <div class="col-md-4">

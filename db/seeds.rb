@@ -7,8 +7,10 @@ PokemonSpecy.create id: 6, name: "Charizard", hp: 78, attack: 84, defense: 78,	s
 PokemonSpecy.create id: 7, name: "Squirtle", hp: 44, attack: 48, defense: 65,	sp_attack: 50, sp_defense: 64, speed: 43, first_element: "Water"
 PokemonSpecy.create id: 8, name: "Wartortle", hp: 59, attack: 63, defense: 80,	sp_attack: 65, sp_defense: 80, speed: 58, first_element: "Water"
 PokemonSpecy.create id: 9, name: "Blastoise", hp: 79, attack: 83, defense: 100,	sp_attack: 85, sp_defense: 105, speed: 78, first_element: "Water"
-PokemonSpecy.create id: 635, name: "Hydreigon", hp: 92, attack: 105, defense: 90,	sp_attack: 125, sp_defense: 90, speed: 98, first_element: "Dark", second_element: "Dragon"
+PokemonSpecy.create id: 107, name: "Hitmonchan", hp: 50, attack: 105, defense: 79, sp_attack: 35, sp_defense: 110, speed: 76, first_element: "Fighting"
 PokemonSpecy.create id: 384, name: "Rayquaza", hp: 105, attack: 150, defense: 90,	sp_attack: 150, sp_defense: 90, speed: 95, first_element: "Dragon", second_element: "Flying"
+PokemonSpecy.create id: 635, name: "Hydreigon", hp: 92, attack: 105, defense: 90,	sp_attack: 125, sp_defense: 90, speed: 98, first_element: "Dark", second_element: "Dragon"
+
 
 Element.create name: "Normal", strengths: [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0, 1.0, 1.0, 0.5, 1.0]
 Element.create name: "Fire", strengths: [1.0 , 0.5, 0.5, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 2.0, 1.0]

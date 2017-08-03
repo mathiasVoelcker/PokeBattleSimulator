@@ -3,7 +3,13 @@
 <% if pokemon.errors.any? %>
 <div id="error_explanation">
   <h2><%= pluralize(pokemon.errors.count, "error") %> prohibited this pokemon from being saved:</h2>
-
+  <script type="text/javascript">
+  $(document).ready(function() {
+    alert("I am an alert box!");
+    $('#pokemon_nickname').addClass("form-control");
+    $('#pokemon_level').val() = 5;
+ });
+  </script>
   <ul>
     <% pokemon.errors.full_messages.each do |message| %>
     <li><%= message %></li>
@@ -22,9 +28,9 @@
       <%= form.number_field :level, id: :pokemon_level, :class => "form-control"  %>
     </div>
     <div class="field">
-      <%= form.label :nickname, :class => "test" %>
-      <label class="test">nickname</label>
-      <%= form.text_field :nickname, :id => "pokemon_nickname", :class => "" %>
+      <%= form.label :nickname %>
+      <label id="js_test">Nickname</label>
+      <%= form.text_field :nickname, id: :pokemon_nickname, :class => "" %>
     </div>
     <div class="field">
       <%= form.label :nature %>

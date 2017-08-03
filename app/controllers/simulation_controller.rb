@@ -32,6 +32,6 @@ class SimulationController < ApplicationController
 
   private
     def simulation_params
-      params.require(:simulation).permit(:attacking_pokemon_id, :attack_id, :defending_pokemon_id)
+      params.require(:simulation).permit(:attacking_pokemon_id, :attack_id, :defending_pokemon_id, :modifier)
     end
 end

@@ -28,7 +28,7 @@
 
   <div class="field">
     <label>Second Element</label>
-    <%= form.select :second_element, @elements.collect { |element| [element.name, element.name]} %>
+    <%= form.select :second_element, @elements.collect { |element| [element.name, element.name]}, {include_blank: 'None'} %>
   </div>
 
   <div class="field">

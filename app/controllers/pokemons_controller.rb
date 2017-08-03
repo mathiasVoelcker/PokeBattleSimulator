@@ -30,6 +30,7 @@ class PokemonsController < ApplicationController
 
   # GET /pokemons/1/edit
   def edit
+    @natures = Nature.all
   end
 
   # POST /pokemons

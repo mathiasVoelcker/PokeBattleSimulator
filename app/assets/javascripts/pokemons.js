@@ -1,10 +1,17 @@
+//= require jquery
+//= require jquery_ujs
+//= require bootstrap-select
+//= require bootstrap/alert
+//= require bootstrap/dropdown
+//= require turbolinks
+
 $(document).ready(function(){
 
   var pokemons_species = $('#pokemons').data('source')
 
+  $('#js_test').addClass("test");
   $('#pokemon_nickname').addClass("form-control");
   $('#pokemon_level').val() = 5;
-  $('#teste').val() = 
 
   var pokemons = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
