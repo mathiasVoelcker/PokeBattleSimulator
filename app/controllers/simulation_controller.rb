@@ -3,11 +3,11 @@ class SimulationController < ApplicationController
   end
 
   def new
+    
   end
 
   # POST simulation
   def simulate
-    puts("====================================")
     @simulation = Simulation.new(simulation_params)
     @simulation.set_attributes
     @attacking_pokemon = Pokemon.find(@simulation.attacking_pokemon_id)

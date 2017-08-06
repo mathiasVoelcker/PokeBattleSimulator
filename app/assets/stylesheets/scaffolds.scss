@@ -20,17 +20,15 @@ pre {
 }
 
 a {
-  color: #000;
-
-  &:visited {
-    color: #666;
-  }
+  color: #262626;
 
   &:hover {
-    color: #fff;
-    background-color: #000;
+    color: #1a1a1a;
+    font-style: oblique;
+    text-decoration: none;
   }
 }
+
 
 th {
   padding-bottom: 5px;

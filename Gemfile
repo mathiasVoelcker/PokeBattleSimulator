@@ -19,9 +19,10 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
+gem "twitter-bootstrap-rails"
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
-gem 'bootstrap-select-rails', git: 'https://github.com/maxigs/bootstrap-select-rails.git'
 
 gem 'heritage'
 # Use CoffeeScript for .coffee assets and views

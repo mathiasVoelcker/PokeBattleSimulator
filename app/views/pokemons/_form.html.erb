@@ -3,13 +3,6 @@
 <% if pokemon.errors.any? %>
 <div id="error_explanation">
   <h2><%= pluralize(pokemon.errors.count, "error") %> prohibited this pokemon from being saved:</h2>
-  <script type="text/javascript">
-  $(document).ready(function() {
-    alert("I am an alert box!");
-    $('#pokemon_nickname').addClass("form-control");
-    $('#pokemon_level').val() = 5;
- });
-  </script>
   <ul>
     <% pokemon.errors.full_messages.each do |message| %>
     <li><%= message %></li>
@@ -25,11 +18,10 @@
     </div>
     <div class="field">
       <%= form.label :level %>
-      <%= form.number_field :level, id: :pokemon_level, :class => "form-control"  %>
+      <%= form.number_field :level, id: :pokemon_level, :class => "form-control", :value => 5  %>
     </div>
     <div class="field">
       <%= form.label :nickname %>
-      <label id="js_test">Nickname</label>
       <%= form.text_field :nickname, id: :pokemon_nickname, :class => "" %>
     </div>
     <div class="field">
@@ -41,59 +33,66 @@
   <div class="col-md-4">
     <div class="field">
       <%= form.label :iv_attack %>
-      <%= form.number_field :iv_attack, id: :pokemon_iv_attack, :class => "form-control" %>
+      <%= form.number_field :iv_attack, id: :pokemon_iv_attack, :class => "form-control", :value => 0 %>
     </div>
+    <p id="attack_iv_error_message" class="error-message-hidden">A pokemon IV can't be higher than 31</p>
     <div class="field">
       <%= form.label :iv_defense %>
-      <%= form.number_field :iv_defense, id: :pokemon_iv_defense, :class => "form-control" %>
+      <%= form.number_field :iv_defense, id: :pokemon_iv_defense, :class => "form-control", :value => 0 %>
     </div>
+    <p id="defense_iv_error_message" class="error-message-hidden">A pokemon IV can't be higher than 31</p>
     <div class="field">
       <%= form.label :iv_sp_attack %>
-      <%= form.number_field :iv_sp_attack, id: :pokemon_iv_sp_attack, :class => "form-control" %>
+      <%= form.number_field :iv_sp_attack, id: :pokemon_iv_sp_attack, :class => "form-control", :value => 0 %>
     </div>
+    <p id="sp_attack_iv_error_message" class="error-message-hidden">A pokemon IV can't be higher than 31</p>
     <div class="field">
       <%= form.label :iv_sp_defense %>
-      <%= form.number_field :iv_sp_defense, id: :pokemon_iv_sp_defense, :class => "form-control" %>
+      <%= form.number_field :iv_sp_defense, id: :pokemon_iv_sp_defense, :class => "form-control", :value => 0 %>
     </div>
+    <p id="sp_defense_iv_error_message" class="error-message-hidden">A pokemon IV can't be higher than 31</p>
     <div class="field">
       <%= form.label :iv_speed %>
-      <%= form.number_field :iv_speed, id: :pokemon_iv_speed, :class => "form-control" %>
+      <%= form.number_field :iv_speed, id: :pokemon_iv_speed, :class => "form-control", :value => 0 %>
     </div>
+    <p id="speed_iv_error_message" class="error-message-hidden">A pokemon IV can't be higher than 31</p>
     <div class="field">
       <%= form.label :iv_hp %>
-      <%= form.number_field :iv_hp, id: :pokemon_iv_hp, :class => "form-control" %>
+      <%= form.number_field :iv_hp, id: :pokemon_iv_hp, :class => "form-control", :value => 0 %>
     </div>
+    <p id="hp_iv_error_message" class="error-message-hidden">A pokemon IV can't be higher than 31</p>
   </div>
 
   <div class="col-md-4">
     <div class="field">
       <%= form.label :ev_attack %>
-      <%= form.number_field :ev_attack, id: :pokemon_ev_attack, :class => "form-control" %>
+      <%= form.number_field :ev_attack, id: :pokemon_ev_attack, :class => "form-control", :value => 0 %>
     </div>
+    <p id="attack_ev_error_message" class="error-message-hidden">A pokemon EV can't be higher than 252</p>
     <div class="field">
       <%= form.label :ev_defense %>
-      <%= form.number_field :ev_defense, id: :pokemon_ev_defense, :class => "form-control" %>
+      <%= form.number_field :ev_defense, id: :pokemon_ev_defense, :class => "form-control", :value => 0 %>
     </div>
+    <p id="defense_ev_error_message" class="error-message-hidden">A pokemon EV can't be higher than 252</p>
     <div class="field">
       <%= form.label :ev_sp_attack %>
-      <%= form.number_field :ev_sp_attack, id: :pokemon_ev_sp_attack, :class => "form-control" %>
+      <%= form.number_field :ev_sp_attack, id: :pokemon_ev_sp_attack, :class => "form-control", :value => 0, :value => 0 %>
     </div>
     <div class="field">
       <%= form.label :ev_sp_defense %>
-      <%= form.number_field :ev_sp_defense, id: :pokemon_ev_sp_defense, :class => "form-control" %>
+      <%= form.number_field :ev_sp_defense, id: :pokemon_ev_sp_defense, :class => "form-control", :value => 0 %>
     </div>
     <div class="field">
       <%= form.label :ev_speed %>
-      <%= form.number_field :ev_speed, id: :pokemon_ev_speed, :class => "form-control" %>
+      <%= form.number_field :ev_speed, id: :pokemon_ev_speed, :class => "form-control", :value => 0 %>
     </div>
     <div class="field">
       <%= form.label :ev_hp %>
-      <%= form.number_field :ev_hp, id: :pokemon_ev_hp, :class => "form-control" %>
+      <%= form.number_field :ev_hp, id: :pokemon_ev_hp, :class => "form-control", :value => 0 %>
     </div>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+    <div class="actions">
+      <%= form.submit :CreatePokemon, id: :create_pokemon_btn %>
+    </div>
   </div>
 </div>
 </div>
