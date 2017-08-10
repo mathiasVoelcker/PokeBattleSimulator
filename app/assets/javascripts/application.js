@@ -20,137 +20,98 @@
 document.addEventListener("turbolinks:load", function() {
 
   errors = {iv_attack: false, iv_defense: false, iv_sp_attack: false, iv_sp_defense: false, iv_speed: false, iv_hp: false, ev_attack: false, ev_defense: false, ev_sp_attack: false, ev_sp_defense: false, ev_speed: false, ev_hp: false, ev_sum: false};
-  $("#pokemon_iv_attack").val() = 0;
+  var stats = ["attack", "defense", "sp_attack", "sp_defense", "speed","hp"];
 
-
-  $("#pokemon_iv_attack").focusout(function() {
-    if($("#pokemon_iv_attack").val() > 31) {
-      $("#attack_iv_error_message").removeClass("error-message-hidden");
-      $("#attack_iv_error_message").addClass("error-message");
-      errors['iv_attack'] = true;
-      $('#create_pokemon_btn').prop('disabled', true);
-    }
-    else if($("#pokemon_iv_attack").val() <= 31 && $("#attack_iv_error_message").hasClass("error-message")) {
-      $("#attack_iv_error_message").removeClass("error-message");
-      $("#attack_iv_error_message").addClass("error-message-hidden");
-      errors['iv_attack'] = false;
-      enable_button();
-    }
-  });
-
-  $("#pokemon_iv_defense").focusout(function() {
-    if($("#pokemon_iv_defense").val() > 31) {
-      $("#defense_iv_error_message").removeClass("error-message-hidden");
-      $("#defense_iv_error_message").addClass("error-message");
-      errors['iv_defense'] = true;
-      $('#create_pokemon_btn').prop('disabled', true)
-    }
-    else if($("#pokemon_iv_defense").val() <= 31 && $("#defense_iv_error_message").hasClass("error-message")) {
-      $("#defense_iv_error_message").removeClass("error-message");
-      $("#defense_iv_error_message").addClass("error-message-hidden");
-      errors['iv_defense'] = false;
-      enable_button();
-    }
-  });
-
-  $("#pokemon_iv_sp_attack").focusout(function() {
-    if($("#pokemon_iv_sp_attack").val() > 31) {
-      $("#sp_attack_iv_error_message").removeClass("error-message-hidden");
-      $("#sp_attack_iv_error_message").addClass("error-message");
-      errors['iv_sp_attack'] = true;
-      $('#create_pokemon_btn').prop('disabled', true)
-    }
-    else if($("#pokemon_iv_sp_attack").val() <= 31 && $("#sp_attack_iv_error_message").hasClass("error-message")) {
-      $("#sp_attack_iv_error_message").removeClass("error-message");
-      $("#sp_attack_iv_error_message").addClass("error-message-hidden");
-      errors['iv_sp_attack'] = false;
-      enable_button();
-    }
-  });
-
-  $("#pokemon_iv_sp_defense").focusout(function() {
-    if($("#pokemon_iv_sp_defense").val() > 31) {
-      $("#sp_defense_iv_error_message").removeClass("error-message-hidden");
-      $("#sp_defense_iv_error_message").addClass("error-message");
-      errors['iv_sp_defense'] = true;
-      $('#create_pokemon_btn').prop('disabled', true)
-    }
-    else if($("#pokemon_iv_sp_defense").val() <= 31 && $("#sp_defense_iv_error_message").hasClass("error-message")) {
-      $("#sp_defense_iv_error_message").removeClass("error-message");
-      $("#sp_defense_iv_error_message").addClass("error-message-hidden");
-      errors['iv_sp_defense'] = false;
-      enable_button();
-    }
-  });
-
-  $("#pokemon_iv_speed").focusout(function() {
-    if($("#pokemon_iv_speed").val() > 31) {
-      $("#speed_iv_error_message").removeClass("error-message-hidden");
-      $("#speed_iv_error_message").addClass("error-message");
-      errors['iv_speed'] = true;
-      $('#create_pokemon_btn').prop('disabled', true)
-    }
-    else if($("#pokemon_iv_speed").val() <= 31 && $("#speed_iv_error_message").hasClass("error-message")) {
-      $("#speed_iv_error_message").removeClass("error-message");
-      $("#speed_iv_error_message").addClass("error-message-hidden");
-      errors['iv_speed'] = false;
-      enable_button(); enable_button();
-    }
-  });
-
-  $("#pokemon_iv_hp").focusout(function() {
-    if($("#pokemon_iv_hp").val() > 31) {
-      $("#hp_iv_error_message").removeClass("error-message-hidden");
-      $("#hp_iv_error_message").addClass("error-message");
-      errors['iv_hp'] = true;
-      $('#create_pokemon_btn').prop('disabled', true)
-    }
-    else if($("#pokemon_iv_hp").val() <= 31 && $("#attack_iv_error_message").hasClass("error-message")) {
-      $("#hp_iv_error_message").removeClass("error-message");
-      $("#hp_iv_error_message").addClass("error-message-hidden");
-      errors['iv_hp'] = false;
-      enable_button();
-    }
-  });
-
-  $("#pokemon_ev_attack").focusout(function() {
-    if($("#pokemon_ev_attack").val() > 252) {
-      $("#attack_ev_error_message").removeClass("error-message-hidden");
-      $("#attack_ev_error_message").addClass("error-message");
-      errors['ev_attack'] = true;
-      $('#create_pokemon_btn').prop('disabled', true)
-    }
-    else if($("#pokemon_ev_attack").val() <= 252 && $("#attack_ev_error_message").hasClass("error-message")) {
-      $("#attack_ev_error_message").removeClass("error-message");
-      $("#attack_ev_error_message").addClass("error-message-hidden");
-      errors['ev_attack'] = false;
-      enable_button();
-    }
-  });
-
-  $("#pokemon_ev_defense").focusout(function() {
-    if($("#pokemon_ev_defense").val() > 252) {
-      $("#defense_ev_error_message").removeClass("error-message-hidden");
-      $("#defense_ev_error_message").addClass("error-message");
-      errors['ev_defense'] = true;
-      $('#create_pokemon_btn').prop('disabled', true);
-      alert("puts");
-    }
-    else if($("#pokemon_ev_defense").val() <= 252 && $("#defense_ev_error_message").hasClass("error-message")) {
-      $("#defense_ev_error_message").removeClass("error-message");
-      $("#defense_ev_error_message").addClass("error-message-hidden");
-      errors['ev_defense'] = false;
-      enable_button();
-    }
-  });
-
-  function enable_button(){
-    for(var error in errors){
-      if(errors[error] === true){
-        return;
-      }
-    }
-    $('#create_pokemon_btn').prop('disabled', false);
+  if($("#pokemon_level").val() === ""){
+    $("#pokemon_level").attr("value", 5);
   }
 
+  setValue("#pokemon_ev_attack");
+  setValue("#pokemon_ev_defense");
+  setValue("#pokemon_ev_sp_attack");
+  setValue("#pokemon_ev_sp_defense");
+  setValue("#pokemon_ev_speed");
+  setValue("#pokemon_ev_hp");
+
+
+
+  stats.forEach(function(stat) {
+    setValue("#pokemon_iv_" + stat);
+    $("#pokemon_ev_" + stat).keyup(function(){
+      self.validateEvInput(stat);
+      validate_empty("ev_" + stat);
+    });
+    $("#pokemon_iv_" + stat).keyup(function(){
+      self.validateIvInput(stat);
+      validate_empty("iv_" + stat);
+    });
+  });
 });
+
+function setValue(inputId){
+  if($(inputId).val() === ""){
+    $(inputId).attr("value", 0);
+  }
+}
+
+function enable_button(){
+  for(var error in errors){
+    if(errors[error] === true){
+      return;
+    }
+  }
+  $('#create_pokemon_btn').prop('disabled', false);
+}
+
+function checkEvSum(){
+  var sum = 0;
+  sum = parseInt($("#pokemon_ev_attack").val()) + parseInt($("#pokemon_ev_defense").val()) + parseInt($("#pokemon_ev_sp_attack").val()) + parseInt($("#pokemon_ev_sp_defense").val()) + parseInt($("#pokemon_ev_speed").val()) + parseInt($("#pokemon_ev_hp").val());
+  if(sum > 510){
+    $("#ev_sum_error_message").removeClass("error-message-hidden");
+    $("#ev_sum_error_message").addClass("error-message");
+    errors['ev_sum'] = true;
+    $('#create_pokemon_btn').prop('disabled', true);
+  }
+  else if($("#ev_sum_error_message").hasClass("error-message")){
+    $("#ev_sum_error_message").removeClass("error-message");
+    $("#ev_sum_error_message").addClass("error-message-hidden");
+    errors['ev_sum'] = false;
+  }
+}
+
+function validateEvInput(stat){
+  if($("#pokemon_ev_" + stat).val() > 252) {
+    $("#" + stat + "_ev_error_message").removeClass("error-message-hidden");
+    $("#" + stat + "_ev_error_message").addClass("error-message");
+    errors['ev_' + stat] = true;
+    $('#create_pokemon_btn').prop('disabled', true);
+  }
+  else if($("#" + stat + "_ev_error_message").hasClass("error-message")) {
+    $("#" + stat + "_ev_error_message").removeClass("error-message");
+    $("#" + stat + "_ev_error_message").addClass("error-message-hidden");
+    errors['ev_' + stat] = false;
+  }
+  checkEvSum();
+  enable_button();
+}
+
+function validateIvInput(stat){
+    if($("#pokemon_iv_" + stat).val() > 31) {
+      $("#" + stat + "_iv_error_message").removeClass("error-message-hidden");
+      $("#" + stat + "_iv_error_message").addClass("error-message");
+      errors['iv_' + stat] = true;
+      $('#create_pokemon_btn').prop('disabled', true)
+    }
+    else if($("#pokemon_iv_" + stat).val() <= 31 && $("#" + stat + "_iv_error_message").hasClass("error-message")) {
+      $("#" + stat + "_iv_error_message").removeClass("error-message");
+      $("#" + stat + "_iv_error_message").addClass("error-message-hidden");
+      errors['iv_' + stat] = false;
+      enable_button();
+    }
+}
+
+function validate_empty(stat){  
+  if($("#pokemon_" + stat).val() === ""){
+    $("#pokemon_" + stat).val(0);
+  }
+}
