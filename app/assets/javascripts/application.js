@@ -34,6 +34,15 @@ document.addEventListener("turbolinks:load", function() {
   setValue("#pokemon_ev_hp");
 
 
+  $("#pokemon_level").keyup(function(){
+    if($("#pokemon_level").val() === ''){
+      $("#pokemon_level").val(0);
+      $("#pokemon_level").select();
+    }
+    else if($("#pokemon_level").val() > 100){
+      $("#pokemon_level").val(100);
+    }
+  })
 
   stats.forEach(function(stat) {
     setValue("#pokemon_iv_" + stat);
@@ -110,8 +119,9 @@ function validateIvInput(stat){
     }
 }
 
-function validate_empty(stat){  
+function validate_empty(stat){
   if($("#pokemon_" + stat).val() === ""){
     $("#pokemon_" + stat).val(0);
+    $("#pokemon_" + stat).select();
   }
 }
