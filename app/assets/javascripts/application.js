@@ -19,7 +19,6 @@
 
 document.addEventListener("turbolinks:load", function() {
 
-  errors = {iv_attack: false, iv_defense: false, iv_sp_attack: false, iv_sp_defense: false, iv_speed: false, iv_hp: false, ev_attack: false, ev_defense: false, ev_sp_attack: false, ev_sp_defense: false, ev_speed: false, ev_hp: false, ev_sum: false};
   var stats = ["attack", "defense", "sp_attack", "sp_defense", "speed","hp"];
 
   if($("#pokemon_level").val() === ""){
@@ -32,7 +31,6 @@ document.addEventListener("turbolinks:load", function() {
   setValue("#pokemon_ev_sp_defense");
   setValue("#pokemon_ev_speed");
   setValue("#pokemon_ev_hp");
-
 
   $("#pokemon_level").keyup(function(){
     if($("#pokemon_level").val() === ''){
@@ -48,11 +46,9 @@ document.addEventListener("turbolinks:load", function() {
     setValue("#pokemon_iv_" + stat);
     $("#pokemon_ev_" + stat).keyup(function(){
       self.validateEvInput(stat);
-      validate_empty("ev_" + stat);
     });
     $("#pokemon_iv_" + stat).keyup(function(){
       self.validateIvInput(stat);
-      validate_empty("iv_" + stat);
     });
   });
 });
@@ -78,50 +74,30 @@ function checkEvSum(){
   if(sum > 510){
     $("#ev_sum_error_message").removeClass("error-message-hidden");
     $("#ev_sum_error_message").addClass("error-message");
-    errors['ev_sum'] = true;
     $('#create_pokemon_btn').prop('disabled', true);
   }
   else if($("#ev_sum_error_message").hasClass("error-message")){
     $("#ev_sum_error_message").removeClass("error-message");
     $("#ev_sum_error_message").addClass("error-message-hidden");
-    errors['ev_sum'] = false;
+    $('#create_pokemon_btn').prop('disabled', false);
   }
 }
 
 function validateEvInput(stat){
   if($("#pokemon_ev_" + stat).val() > 252) {
-    $("#" + stat + "_ev_error_message").removeClass("error-message-hidden");
-    $("#" + stat + "_ev_error_message").addClass("error-message");
-    errors['ev_' + stat] = true;
-    $('#create_pokemon_btn').prop('disabled', true);
+    $("#pokemon_ev_" + stat).val(252);
   }
-  else if($("#" + stat + "_ev_error_message").hasClass("error-message")) {
-    $("#" + stat + "_ev_error_message").removeClass("error-message");
-    $("#" + stat + "_ev_error_message").addClass("error-message-hidden");
-    errors['ev_' + stat] = false;
+  else if($("#pokemon_ev_" + stat).val() === '') {
+    $("#pokemon_ev_" + stat).val(0);
   }
   checkEvSum();
-  enable_button();
 }
 
 function validateIvInput(stat){
     if($("#pokemon_iv_" + stat).val() > 31) {
-      $("#" + stat + "_iv_error_message").removeClass("error-message-hidden");
-      $("#" + stat + "_iv_error_message").addClass("error-message");
-      errors['iv_' + stat] = true;
-      $('#create_pokemon_btn').prop('disabled', true)
+      $("#pokemon_iv_" + stat).val(31);
     }
-    else if($("#pokemon_iv_" + stat).val() <= 31 && $("#" + stat + "_iv_error_message").hasClass("error-message")) {
-      $("#" + stat + "_iv_error_message").removeClass("error-message");
-      $("#" + stat + "_iv_error_message").addClass("error-message-hidden");
-      errors['iv_' + stat] = false;
-      enable_button();
+    else if($("#pokemon_iv_" + stat).val() === '') {
+      $("#pokemon_iv_" + stat).val(0);
     }
-}
-
-function validate_empty(stat){
-  if($("#pokemon_" + stat).val() === ""){
-    $("#pokemon_" + stat).val(0);
-    $("#pokemon_" + stat).select();
-  }
 }

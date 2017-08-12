@@ -10,25 +10,28 @@
   </ul>
 </div>
 <% end %>
+<div class="row">
+  <div class="col-md-4">
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name, id: :attack_name, :class=>"form-control" %>
+    </div>
 
-<div class="field">
-  <%= form.label :name %>
-  <%= form.text_field :name, id: :attack_name %>
-</div>
+    <div class="field">
+      <%= form.label :base_power %>
+      <%= form.number_field :base_power, id: :attack_base_power, :class=>"form-control"  %>
+    </div>
 
-<div class="field">
-  <%= form.label :base_power %>
-  <%= form.number_field :base_power, id: :attack_base_power %>
-</div>
+    <div class="field">
+      <%= form.label :element %>
+      <%= form.select :element_id, @elements.collect { |element| [element.name, element.id]}, {}, { class: "form-control"} %>
+    </div>
 
-<div class="field">
-  <%= form.label :element %>
-  <%= form.select :element_id, @elements.collect { |element| [element.name, element.id]} %>
-</div>
-
-<div class="field">
-  <%= form.label :type %>
-  <%= form.select :attack_type_id, @attack_types.collect { |type| [type.name, type.id] } %>
+    <div class="field">
+      <%= form.label :type %>
+      <%= form.select :attack_type_id, @attack_types.collect { |type| [type.name, type.id] }, {}, { class: "form-control"} %>
+    </div>
+  </div>
 </div>
 
 <div class="actions">

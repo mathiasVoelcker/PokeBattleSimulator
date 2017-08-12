@@ -24,6 +24,9 @@ gem 'jquery-ui-rails'
 gem "twitter-bootstrap-rails"
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 
+gem 'angular-rails-templates'
+gem 'bower-rails' 
+
 gem 'heritage'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
