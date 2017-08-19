@@ -17,7 +17,7 @@
       <%= form.label :id %>
       <%= form.number_field :id, id: :pokemon_specy_id, :class=> "form-control" %>
     </div>
-
+    <p id="pokemon_id_error_message" class="error-message-hidden">Pokemon id already registered</p>
     <div class="field">
       <label>Name</label>
       <%= form.text_field :name, id: :pokemon_specy_name, :class=> "form-control" %>
@@ -37,37 +37,37 @@
     <h4>Base Stats</h4>
     <div class="field">
       <label>HP</label>
-      <%= form.number_field :hp, id: :pokemon_specy_hp, :class=> "form-control" %>
+      <%= form.number_field :hp, id: :pokemon_specy_hp, :class=> "form-control", :onClick => "this.select();" %>
     </div>
 
     <div class="field">
       <label>Attack</label>
-      <%= form.number_field :attack, id: :pokemon_specy_attack, :class=> "form-control" %>
+      <%= form.number_field :attack, id: :pokemon_specy_attack, :class=> "form-control", :onClick => "this.select();" %>
     </div>
 
     <div class="field">
       <label>Defense</label>
-      <%= form.number_field :defense, id: :pokemon_specy_defense, :class=> "form-control" %>
+      <%= form.number_field :defense, id: :pokemon_specy_defense, :class=> "form-control", :onClick => "this.select();" %>
     </div>
 
     <div class="field">
       <label>Special Attack</label>
-      <%= form.number_field :sp_attack, id: :pokemon_specy_sp_attack, :class=> "form-control" %>
+      <%= form.number_field :sp_attack, id: :pokemon_specy_sp_attack, :class=> "form-control", :onClick => "this.select();" %>
     </div>
 
     <div class="field">
       <label>Special Defense</label>
-      <%= form.number_field :sp_defense, id: :pokemon_specy_sp_defense, :class=> "form-control" %>
+      <%= form.number_field :sp_defense, id: :pokemon_specy_sp_defense, :class=> "form-control", :onClick => "this.select();" %>
     </div>
 
     <div class="field">
       <label>Speed</label>
-      <%= form.number_field :speed, id: :pokemon_specy_speed, :class=> "form-control" %>
+      <%= form.number_field :speed, id: :pokemon_specy_speed, :class=> "form-control", :onClick => "this.select();" %>
     </div>
   </div>
 </div>
 
 <div class="actions">
-  <input type="submit" name="commit" value="Save Pokemon Species" data-disable-with="Save Pokemon Species">
+  <input type="submit" id="create_pokemon_species_btn" name="commit" value="Save Pokemon Species" data-disable-with="Save Pokemon Species">
 </div>
 <% end %>

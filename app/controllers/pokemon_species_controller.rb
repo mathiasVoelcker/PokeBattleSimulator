@@ -14,6 +14,12 @@ class PokemonSpeciesController < ApplicationController
 
   # GET /pokemon_species/new
   def new
+    @pokemon_species = PokemonSpecy.all
+    @pokemons_id = Array.new
+    for @pokemon in @pokemon_species do
+      @pokemons_id << @pokemon.id
+    end
+    gon.pokemons = @pokemons_id
     @pokemon_specy = PokemonSpecy.new
   end
 

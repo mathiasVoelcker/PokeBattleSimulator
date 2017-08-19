@@ -21,11 +21,14 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
+# Use controller var in js file
+gem 'gon'
+
 gem "twitter-bootstrap-rails"
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 
 gem 'angular-rails-templates'
-gem 'bower-rails' 
+gem 'bower-rails'
 
 gem 'heritage'
 # Use CoffeeScript for .coffee assets and views
