@@ -15,7 +15,7 @@
     <h4>Basic Info</h4>
     <div class="field">
       <%= form.label :id %>
-      <%= form.number_field :id, id: :pokemon_specy_id, :class=> "form-control" %>
+      <%= form.number_field :id, id: :pokemon_specy_id, :class=> "form-control", :onClick=> "this.select()" %>
     </div>
     <p id="pokemon_id_error_message" class="error-message-hidden">Pokemon id already registered</p>
     <div class="field">
@@ -68,6 +68,6 @@
 </div>
 
 <div class="actions">
-  <input type="submit" id="create_pokemon_species_btn" name="commit" value="Save Pokemon Species" data-disable-with="Save Pokemon Species">
+  <input type="submit" class="btn btn-primary" id="create_pokemon_species_btn" name="commit" value="Save Pokemon Species" data-disable-with="Save Pokemon Species">
 </div>
 <% end %>

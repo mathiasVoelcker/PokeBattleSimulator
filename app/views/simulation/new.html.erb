@@ -29,12 +29,12 @@
     <div class="col-md-4">
         <%= f.collection_select :defending_pokemon_id, Pokemon.all, :id, :context, {},  { class: "form-control" } %>
     </div>
-    <p>
+    <p class="u-font-size28">
       Didn't find your pokemon? <a href="/pokemons/new">click here</a>
     </p>
   </div>
   <div class="row">
-    <%= f.submit "Simulate Battle", class: "btn btn-default" %>
+    <%= f.submit "Simulate Battle", class: "btn btn-primary u-margin-top-large" %>
   </div>
   <div class="row">
     <%= render partial: 'simulate' %>

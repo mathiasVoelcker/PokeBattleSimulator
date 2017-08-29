@@ -27,7 +27,10 @@ document.addEventListener("turbolinks:load", function() {
 
   $("#pokemon_specy_id").keyup(function(){
     var error = false;
-    setValue("pokemon_specy_id");
+    if($("#pokemon_specy_id").val() === ""){
+      $("#pokemon_specy_id").val(0)
+      $("#pokemon_specy_id").select()
+    }
     gon.pokemons.forEach(function(pokemon_id){
       if(parseInt($("#pokemon_specy_id").val()) === pokemon_id){
         $("#pokemon_id_error_message").addClass("error-message");
@@ -56,6 +59,7 @@ document.addEventListener("turbolinks:load", function() {
   setValue("#pokemon_specy_sp_defense");
   setValue("#pokemon_specy_speed");
   setValue("#attack_base_power");
+  setValue("#pokemon_specy_id");
   $("#create_attack_btn").prop('disabled', true);
 
   $("#pokemon_level").keyup(function(){
@@ -94,7 +98,7 @@ document.addEventListener("turbolinks:load", function() {
 
 function setValue(inputId){
   if($(inputId).val() === ""){
-    $(inputId).attr("value", 0);
+    $(inputId).val(0);
   }
 }
 

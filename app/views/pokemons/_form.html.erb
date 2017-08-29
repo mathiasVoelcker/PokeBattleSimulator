@@ -82,7 +82,7 @@
       <%= form.number_field :ev_hp, id: :pokemon_ev_hp, :class => "form-control", :onClick => "this.select();" %>
     </div>
     <div class="actions">
-      <%= form.submit :Create, id: :create_pokemon_btn %>
+      <%= form.submit :value => "Create Pokemon", id: :create_pokemon_btn, :class => "btn btn-primary u-margin-top-medium" %>
     </div>
     <p id="ev_sum_error_message" class="error-message-hidden">A pokemon can only learn a maximum of 510 EVs</p>
   </div>

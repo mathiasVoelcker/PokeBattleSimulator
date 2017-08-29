@@ -1,13 +1,13 @@
 <p id="notice"><%= notice %></p>
 
-<h3>My Pokemons</h3>
-
+<div class="col-md-6">
+  <h3>My Pokemons</h3>
+</div>
 <table class="table">
   <thead>
     <tr>
       <th>Pokemon species</th>
       <th>Level</th>
-      <th>Nickname</th>
       <th>Attack</th>
       <th>Defense</th>
       <th>Special Attack</th>
@@ -19,20 +19,19 @@
   </thead>
   <tbody>
     <% @pokemons.each do |pokemon| %>
-      <tr>
-        <td><%= @pokemon_species.find(pokemon.pokemon_species_id).name %></td>
-        <td><%= pokemon.level %></td>
-        <td><%= pokemon.nickname %></td>
-        <td><%= pokemon.attack_stat %></td>
-        <td><%= pokemon.defense_stat %></td>
-        <td><%= pokemon.sp_attack_stat %></td>
-        <td><%= pokemon.sp_defense_stat %></td>
-        <td><%= pokemon.speed_stat %></td>
-        <td><%= pokemon.hp_stat %></td>
-        <td><%= link_to 'Show', pokemon %></td>
-        <td><%= link_to 'Edit', edit_pokemon_path(pokemon) %></td>
-        <td><%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+    <tr>
+      <td><%= @pokemon_species.find(pokemon.pokemon_species_id).name %></td>
+      <td><%= pokemon.level %></td>
+      <td><%= pokemon.attack_stat %></td>
+      <td><%= pokemon.defense_stat %></td>
+      <td><%= pokemon.sp_attack_stat %></td>
+      <td><%= pokemon.sp_defense_stat %></td>
+      <td><%= pokemon.speed_stat %></td>
+      <td><%= pokemon.hp_stat %></td>
+      <td><a class="btn btn-sm btn-primary u-float-right" href="simulation/new" role="button">Simlate Battle</a></td>
+      <td><%= link_to 'Edit', edit_pokemon_path(pokemon) %></td>
+      <td><%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
     <% end %>
   </tbody>
 </table>
