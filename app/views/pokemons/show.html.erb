@@ -10,9 +10,17 @@
   <%= @pokemon.level %>
 </p>
 
+
+<% if(@pokemon.nickname != "") %>
 <p>
   <strong>Nickname:</strong>
   <%= @pokemon.nickname %>
+</p>
+<% end %>
+
+<p>
+  <strong>HP:</strong>
+  <%= @hp  %>
 </p>
 
 <p>

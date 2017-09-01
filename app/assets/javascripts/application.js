@@ -61,7 +61,8 @@ document.addEventListener("turbolinks:load", function() {
   setValue("#attack_base_power");
   setValue("#pokemon_specy_id");
   $("#create_attack_btn").prop('disabled', true);
-
+  $("#create_simulation_btn").prop('disabled', true);
+//pokemon form validation
   $("#pokemon_level").keyup(function(){
     if($("#pokemon_level").val() === ''){
       $("#pokemon_level").val(0);
@@ -85,6 +86,7 @@ document.addEventListener("turbolinks:load", function() {
     })
   });
 
+//attack form validation
   $("#attack_name").keyup(function(){
     if($("#attack_name").val() === "") {
       $("#create_attack_btn").prop('disabled', true);
@@ -94,6 +96,16 @@ document.addEventListener("turbolinks:load", function() {
     }
   });
 
+  //simulation form validation
+  $("#simulation_attacking_pokemon").change(function(){
+    validateSimulationInputs()
+  });
+  $("#simulation_attack").change(function(){
+    validateSimulationInputs()
+  });
+  $("#simulation_defending_pokemon").change(function(){
+    validateSimulationInputs()
+  });
 });
 
 function setValue(inputId){
@@ -101,15 +113,6 @@ function setValue(inputId){
     $(inputId).val(0);
   }
 }
-
-// function enable_button(){
-//   for(var error in errors){
-//     if(errors[error] === true){
-//       return;
-//     }
-//   }
-//   $('#create_pokemon_btn').prop('disabled', false);
-// }
 
 function checkEvSum(){
   var sum = 0;
@@ -149,5 +152,21 @@ function validateBaseStat(stat){
   if($("#pokemon_specy_" + stat).val() === ''){
     $("#pokemon_specy_" + stat).val(0);
     this.select();
+  }
+}
+
+function validateSimulationInputs(){
+  var error = false
+  if($("#simulation_attacking_pokemon").val() === ''){
+    error = true
+  }
+  if($("#simulation_attack").val() === ''){
+    error = true
+  }
+  if($("#simulation_defending_pokemon").val() === ''){
+    error = true
+  }
+  if(error == false){
+    $("#create_simulation_btn").prop('disabled', false)
   }
 }

@@ -28,7 +28,7 @@
       <td><%= pokemon.sp_defense_stat %></td>
       <td><%= pokemon.speed_stat %></td>
       <td><%= pokemon.hp_stat %></td>
-      <td><a class="btn btn-sm btn-primary u-float-right" href="simulation/new" role="button">Simlate Battle</a></td>
+      <td><%= link_to 'Battle', {controller: "simulation", action: "new", id: pokemon.id}, :class=>"btn btn-danger"%></td>
       <td><%= link_to 'Edit', edit_pokemon_path(pokemon) %></td>
       <td><%= link_to 'Destroy', pokemon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>

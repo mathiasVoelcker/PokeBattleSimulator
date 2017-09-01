@@ -3,7 +3,9 @@ class SimulationController < ApplicationController
   end
 
   def new
-    
+    @attacking_pokemon_id = params[:id]
+    puts("=======================================")
+    puts(@attacking_pokemon_id)
   end
 
   # POST simulation
