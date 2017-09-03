@@ -17,7 +17,7 @@ class AttacksControllerTest < ActionDispatch::IntegrationTest
 
   test "should create attack" do
     assert_difference('Attack.count') do
-      post attacks_url, params: { attack: { base_power: @attack.base_power, element: @attack.element, name: @attack.name, type: @attack.type } }
+      post attacks_url, params: { attack: { base_power: @attack.base_power, element_id: @attack.element_id, name: @attack.name, attack_type_id: @attack.attack_type_id } }
     end
 
     assert_redirected_to attack_url(Attack.last)
@@ -34,7 +34,7 @@ class AttacksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update attack" do
-    patch attack_url(@attack), params: { attack: { base_power: @attack.base_power, element: @attack.element, name: @attack.name, type: @attack.type } }
+    patch attack_url(@attack), params: { attack: { base_power: @attack.base_power, element_id: @attack.element_id, name: @attack.name, attack_type_id: @attack.attack_type_id } }
     assert_redirected_to attack_url(@attack)
   end
 
