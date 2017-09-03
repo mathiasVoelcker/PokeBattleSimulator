@@ -4,8 +4,6 @@ class SimulationController < ApplicationController
 
   def new
     @attacking_pokemon_id = params[:id]
-    puts("=======================================")
-    puts(@attacking_pokemon_id)
   end
 
   # POST simulation
@@ -18,8 +16,8 @@ class SimulationController < ApplicationController
     @defending_pokemon_species = PokemonSpecy.find(@defending_pokemon.pokemon_species_id)
     @attack = Attack.find(@simulation.attack_id)
     @hp_before = @defending_pokemon.hp_stat
-    damage = @simulation.damage
-    @hp_after = (@hp_before - damage)
+    @damage = @simulation.damage
+    @hp_after = (@hp_before - @damage)
     if @hp_after < 0
       @hp_after = 0
     end

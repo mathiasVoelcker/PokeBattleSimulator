@@ -41,11 +41,12 @@
     border: 1px solid grey;
     border-radius: 5px 5px 0px 0px;
     border-bottom: 1px solid $fithColor;
-    color: white !important;
+    color: $secondColor !important;
+    font-weight: bold;
     &:hover{
       background-color: $forthColor;
       border-bottom: 1px solid $forthColor;
-      color: #1a1a1a;
+      color: $mainColor;
       font-style: oblique;
     }
   }
