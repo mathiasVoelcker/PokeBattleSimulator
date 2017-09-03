@@ -2,7 +2,6 @@
 
 one:
   id: 1
-  nationalNum: 1
   name: MyString
   hp: 1
   attack: 1
@@ -13,7 +12,6 @@ one:
 
 two:
   id: 1
-  nationalNum: 1
   name: MyString
   hp: 1
   attack: 1
