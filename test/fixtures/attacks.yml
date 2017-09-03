@@ -3,11 +3,11 @@
 one:
   name: MyString
   base_power: 1
-  element_id: MyString
+  element_id: 1
   attack_type_id:
 
 two:
   name: MyString
   base_power: 1
-  element_id: MyString
+  element_id: 1
   attack_type_id:
