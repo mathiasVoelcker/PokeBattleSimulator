@@ -1,2 +1,0 @@
-class Nature < ApplicationRecord
-end

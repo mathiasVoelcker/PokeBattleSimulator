@@ -1,2 +1,0 @@
-class AttackType < ApplicationRecord
-end
