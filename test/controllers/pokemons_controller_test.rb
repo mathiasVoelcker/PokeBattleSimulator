@@ -15,13 +15,13 @@ class PokemonsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should create pokemon" do
-    assert_difference('Pokemon.count') do
-      post pokemons_url, params: { pokemon: {  } }
-    end
-
-    assert_redirected_to pokemon_url(Pokemon.last)
-  end
+  # test "should create pokemon" do
+  #   assert_difference('Pokemon.count') do
+  #     post pokemons_url, params: { pokemon: {  } }
+  #   end
+  #
+  #   assert_redirected_to pokemon_url(Pokemon.last)
+  # end
 
   test "should show pokemon" do
     get pokemon_url(@pokemon)
