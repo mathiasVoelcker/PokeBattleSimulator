@@ -1,0 +1,42 @@
+<%= form_tag('/search', :method => 'get') do %>
+<div class="form-group">
+  <%= text_field_tag :search, params[:search] %>
+  <button type="submit" class="btn-primary">Find Pokemon</button>
+</div>
+<% end %>
+<% if @pokemons_species != nil %>
+<div class="containter">
+  <% @pokemons_species.each do |pokemon| %>
+  <div class="col-md-4 col-sm-6">
+    <%= link_to new_pokemon_path(:id => pokemon.id ) do %>
+    <div class="panel panel-primary panel-link">
+      <div class="panel-heading">
+        <span>#<%= pokemon.id %> <%= pokemon.name.upcase %></span>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-4 col-sm-4">
+          <img class="pokemon-card-img" src="<%= pokemon_image_url(pokemon.id) %>">
+        </div>
+        <div class="col-md-8 col-sm-8">
+          <div class="row">
+            <span class="type type-<%= pokemon.first_type.name %>">
+              <%= pokemon.first_type.name.upcase %>
+            </span>
+            <% if pokemon.second_type != nil %>
+            <span class="type type-<%= pokemon.second_type.name %>">
+              <%= pokemon.second_type.name.upcase %>
+            </span>
+            <% end %>
+          </div>
+          <div class="row panel-content">
+            <span class="panel-content-text">Base stats: <%= pokemon.base_stat_total %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </a>
+  </div>
+  <% end %>
+</div>
+<% end %>

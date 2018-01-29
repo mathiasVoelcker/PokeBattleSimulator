@@ -12,8 +12,18 @@ class PokemonsController < ApplicationController
   def show
   end
 
-  # GET /pokemons/new
+  # GET /search
+  def search
+    if params[:search] != nil
+      @pokemons_species = PokemonSpecy.where("name like ?", "%#{params[:search].downcase}%")
+    end
+  end
+
+  # GET /pokemons/new/1
   def new
+    params.permit(:id)
+    puts("========================================")
+    puts(params[:id])
     @pokemon = Pokemon.new
   end
 
