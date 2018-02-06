@@ -21,10 +21,9 @@ class PokemonsController < ApplicationController
 
   # GET /pokemons/new/1
   def new
-    params.permit(:id)
-    puts("========================================")
-    puts(params[:id])
+    @pokemon_species = PokemonSpecy.find(params[:id])
     @pokemon = Pokemon.new
+    @natures = Nature.all
   end
 
   # GET /pokemons/1/edit
@@ -35,7 +34,7 @@ class PokemonsController < ApplicationController
   # POST /pokemons.json
   def create
     @pokemon = Pokemon.new(pokemon_params)
-
+    
     respond_to do |format|
       if @pokemon.save
         format.html { redirect_to @pokemon, notice: 'Pokemon was successfully created.' }
@@ -79,6 +78,6 @@ class PokemonsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pokemon_params
-      params.fetch(:pokemon, {})
+      params.require(:pokemon).permit(:pokemon_specy_id, :level, :nickname, :iv_attack, :iv_defense, :iv_sp_attack, :iv_sp_defense, :iv_speed, :iv_hp, :ev_attack, :ev_defense, :ev_sp_attack, :ev_sp_defense, :ev_speed, :ev_hp, :nature_id, :move_1_id, :move_2_id, :move_3_id, :move_4_id)
     end
 end

@@ -1,17 +1,182 @@
-<%= form_with(model: pokemon, local: true) do |form| %>
-  <% if pokemon.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(pokemon.errors.count, "error") %> prohibited this pokemon from being saved:</h2>
+<%= form_for @pokemon, url: {action: "create"} do |form| %>
+<% if pokemon.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(pokemon.errors.count, "error") %> prohibited this pokemon from being saved:</h2>
 
-      <ul>
-      <% pokemon.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+  <ul>
+    <% pokemon.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
 <% end %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <span>#<%= @pokemon_species.id %> <%= @pokemon_species.name.upcase %></span>
+        <%= form.hidden_field :pokemon_specy_id, :value => @pokemon_species.id %>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-4 col-sm-4">
+            <img class="pokemon-card-img" src="<%= pokemon_image_url(@pokemon_species.id) %>">
+            <div class="row">
+              <span class="type type-<%= @pokemon_species.first_type.name %>">
+                <%= @pokemon_species.first_type.name.upcase %>
+              </span>
+              <% if @pokemon_species.second_type != nil %>
+              <span class="type type-<%= @pokemon_species.second_type.name %>">
+                <%= @pokemon_species.second_type.name.upcase %>
+              </span>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-4 left-div">
+            <h3>Base Stats</h3>
+            <p>Hp: <%= @pokemon_species.base_hp %></p>
+            <p>Attack: <%= @pokemon_species.base_attack %></p>
+            <p>Defense: <%= @pokemon_species.base_defense %></p>
+            <p>Special Attack: <%= @pokemon_species.base_sp_attack %></p>
+            <p>Special Defense: <%= @pokemon_species.base_sp_defense %></p>
+            <p>Speed: <%= @pokemon_species.base_speed %></p>
+          </div>
+          <div class="col-md-4 col-sm-4">
+            <div class="field">
+              <%= form.label :level %>
+              <%= form.number_field :level, id: :pokemon_level, :class => "form-control", :onClick => "this.select();"%>
+            </div>
+            <div class="field">
+              <%= form.label :nature %>
+              <%= form.select :nature_id, @natures.collect { |nature| [nature.nature_string, nature.id]}, { }, { class: "form-control" } %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <h3>Final Stats</h3>
+            <div class="field">
+              <%= form.label :Hp %>
+              <p id="pokemon_hp"></p>
+            </div>
+            <div class="field">
+              <%= form.label :Attack %>
+              <p id="pokemon_attack"></p>
+            </div>
+            <div class="field">
+              <%= form.label :Defense %>
+              <p id="pokemon_defense"></p>
+            </div>
+            <div class="field">
+              <%= form.label :Special_Attack %>
+              <p id="pokemon_sp_attack"></p>
+            </div>
+            <div class="field">
+              <%= form.label :Special_Defense %>
+              <p id="pokemon_sp_defense"></p>
+            </div>
+            <div class="field">
+              <%= form.label :Speed %>
+              <p id="pokemon_speed"></p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="col-md-12">
+              <h3>IVs</h3>
+            </div>
+            <div class="col-md-6">
+              <div class="field">
+                <%= form.label :iv_attack %>
+                <%= form.number_field :iv_attack, id: :pokemon_iv_attack, :class => "form-control", :onClick => "this.select();" %>
+              </div>
+              <div class="field">
+                <%= form.label :iv_defense %>
+                <%= form.number_field :iv_defense, id: :pokemon_iv_defense, :class => "form-control", :onClick => "this.select();" %>
+              </div>
+              <div class="field">
+                <%= form.label :iv_sp_attack %>
+                <%= form.number_field :iv_sp_attack, id: :pokemon_iv_sp_attack, :class => "form-control", :onClick => "this.select();" %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="field">
+                <%= form.label :iv_sp_defense %>
+                <%= form.number_field :iv_sp_defense, id: :pokemon_iv_sp_defense, :class => "form-control", :onClick => "this.select();" %>
+              </div>
+              <div class="field">
+                <%= form.label :iv_speed %>
+                <%= form.number_field :iv_speed, id: :pokemon_iv_speed, :class => "form-control", :onClick => "this.select();" %>
+              </div>
+              <div class="field">
+                <%= form.label :iv_hp %>
+                <%= form.number_field :iv_hp, id: :pokemon_iv_hp, :class => "form-control", :onClick => "this.select();" %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="col-md-12">
+              <h3>EVs</h3>
+            </div>
+            <div class="col-md-6">
+              <div class="field">
+                <%= form.label :ev_attack %>
+                <%= form.number_field :ev_attack, id: :pokemon_ev_attack, :class => "form-control", :onClick => "this.select();" %>
+              </div>
+              <div class="field">
+                <%= form.label :ev_defense %>
+                <%= form.number_field :ev_defense, id: :pokemon_ev_defense, :class => "form-control", :onClick => "this.select();" %>
+              </div>
+              <div class="field">
+                <%= form.label :ev_sp_attack %>
+                <%= form.number_field :ev_sp_attack, id: :pokemon_ev_sp_attack, :class => "form-control", :onClick => "this.select();" %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="field">
+                <%= form.label :ev_sp_defense %>
+                <%= form.number_field :ev_sp_defense, id: :pokemon_ev_sp_defense, :class => "form-control", :onClick => "this.select();" %>
+              </div>
+              <div class="field">
+                <%= form.label :ev_speed %>
+                <%= form.number_field :ev_speed, id: :pokemon_ev_speed, :class => "form-control", :onClick => "this.select();" %>
+              </div>
+              <div class="field">
+                <%= form.label :ev_hp %>
+                <%= form.number_field :ev_hp, id: :pokemon_ev_hp, :class => "form-control", :onClick => "this.select();" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="field">
+              <%= form.label :Move_1 %>
+              <%= form.select :move_1_id, @pokemon_species.moves.collect { |move| [move.name, move.id]}, { include_blank: 'Select a move' }, { class: "form-control" } %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="field">
+              <%= form.label :Move_2 %>
+              <%= form.select :move_2_id, @pokemon_species.moves.collect { |move| [move.name, move.id]}, { include_blank: 'Select a move' }, { class: "form-control" } %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="field">
+              <%= form.label :Move_3 %>
+              <%= form.select :move_3_id, @pokemon_species.moves.collect { |move| [move.name, move.id]}, { include_blank: 'Select a move' }, { class: "form-control" } %>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="field">
+              <%= form.label :Move_4 %>
+              <%= form.select :move_4_id, @pokemon_species.moves.collect { |move| [move.name, move.id]}, { include_blank: 'Select a move' }, { class: "form-control" } %>
+            </div>
+          </div>
+        </div>
+        <div class="actions right-div">
+          <%= form.submit "Create Pokemon", :class => "btn btn-success" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>

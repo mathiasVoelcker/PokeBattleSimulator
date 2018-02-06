@@ -373,13 +373,6 @@ TypeAdvantage.create attacking_type_id: 18, defending_type_id: 17, effect: 2.0
 TypeAdvantage.create attacking_type_id: 18, defending_type_id: 9, effect: 0.5
 TypeAdvantage.create attacking_type_id: 18, defending_type_id: 18, effect: 1.0
 
-#Populate Nature
-Nature.create name: "hp"
-Nature.create name: "attack"
-Nature.create name: "defense"
-Nature.create name: "sp_attack"
-Nature.create name: "sp_defense"
-Nature.create name: "speed"
 
 # Populate MoveCategory
 MoveCategory.create category: 'physical'
@@ -424,3 +417,38 @@ for i in 1..802 do
     PokemonSpeciesMove.create! pokemon_specy_id: i, move_id: move_id
   end
 end
+
+
+#Populate Stat
+Stat.create name: "hp"
+Stat.create name: "attack"
+Stat.create name: "defense"
+Stat.create name: "sp_attack"
+Stat.create name: "sp_defense"
+Stat.create name: "speed"
+
+Nature.create name: "Hardy"
+Nature.create name: "Lonely", strong_stat_id: 2, weak_stat_id: 3
+Nature.create name: "Brave", strong_stat_id: 2, weak_stat_id: 6
+Nature.create name: "Adamant", strong_stat_id: 2, weak_stat_id: 4
+Nature.create name: "Naughty", strong_stat_id: 2, weak_stat_id: 5
+Nature.create name: "Docile"
+Nature.create name: "Bold", strong_stat_id: 3, weak_stat_id: 2
+Nature.create name: "Relaxed", strong_stat_id: 3, weak_stat_id: 6
+Nature.create name: "Impish", strong_stat_id: 3, weak_stat_id: 4
+Nature.create name: "Lax", strong_stat_id: 3, weak_stat_id: 5
+Nature.create name: "Serious"
+Nature.create name: "Timid", strong_stat_id: 6, weak_stat_id: 2
+Nature.create name: "Hasty", strong_stat_id: 6, weak_stat_id: 3
+Nature.create name: "Jolly", strong_stat_id: 6, weak_stat_id: 4
+Nature.create name: "Naive", strong_stat_id: 6, weak_stat_id: 5
+Nature.create name: "Bashful"
+Nature.create name: "Modest", strong_stat_id: 4, weak_stat_id: 2
+Nature.create name: "Mild", strong_stat_id: 4, weak_stat_id: 3
+Nature.create name: "Quiet", strong_stat_id: 4, weak_stat_id: 6
+Nature.create name: "Rash", strong_stat_id: 4, weak_stat_id: 5
+Nature.create name: "Quirky"
+Nature.create name: "Calm", strong_stat_id: 5, weak_stat_id: 2
+Nature.create name: "Gentle", strong_stat_id: 5, weak_stat_id: 3
+Nature.create name: "Sassy", strong_stat_id: 5, weak_stat_id: 6
+Nature.create name: "Careful", strong_stat_id: 5, weak_stat_id: 4
