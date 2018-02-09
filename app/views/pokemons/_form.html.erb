@@ -48,7 +48,7 @@
             </div>
             <div class="field">
               <%= form.label :nature %>
-              <%= form.select :nature_id, @natures.collect { |nature| [nature.nature_string, nature.id]}, { }, { class: "form-control" } %>
+              <%= form.select :nature_id, @natures.collect { |nature| [nature.nature_string, nature.id]}, { }, { class: "form-control", id: :pokemon_nature }%>
             </div>
           </div>
         </div>
@@ -57,26 +57,32 @@
             <h3>Final Stats</h3>
             <div class="field">
               <%= form.label :Hp %>
+              <%= form.hidden_field :hp, :id=>"hp" %>
               <p id="pokemon_hp"></p>
             </div>
             <div class="field">
               <%= form.label :Attack %>
+              <%= form.hidden_field :attack, :id=>"attack" %>
               <p id="pokemon_attack"></p>
             </div>
             <div class="field">
               <%= form.label :Defense %>
+              <%= form.hidden_field :defense, :id=>"defense" %>
               <p id="pokemon_defense"></p>
             </div>
             <div class="field">
               <%= form.label :Special_Attack %>
+              <%= form.hidden_field :sp_attack, :id=>"sp_attack" %>
               <p id="pokemon_sp_attack"></p>
             </div>
             <div class="field">
               <%= form.label :Special_Defense %>
+              <%= form.hidden_field :sp_defense, :id=>"sp_defense" %>
               <p id="pokemon_sp_defense"></p>
             </div>
             <div class="field">
               <%= form.label :Speed %>
+              <%= form.hidden_field :speed, :id=>"speed" %>
               <p id="pokemon_speed"></p>
             </div>
           </div>

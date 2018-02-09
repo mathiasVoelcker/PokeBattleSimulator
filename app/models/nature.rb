@@ -4,9 +4,18 @@ class Nature < ApplicationRecord
   belongs_to :weak_stat, foreign_key: 'weak_stat_id', :class_name => "Stat"
 
   def nature_string()
+    puts name_string 'Attack'
     if self.strong_stat != nil
-      return self.name + " (strong: " + self.strong_stat.name.capitalize + ", weakness:"  + self.weak_stat.name.capitalize + ") "
+      return self.name + " (strong: " + name_string(self.strong_stat.name.capitalize) + ", weakness: "  + name_string(self.weak_stat.name.capitalize) + ") "
     end
     self.name
   end
+
+  def name_string name
+    if name.include? 'Sp_'
+      name.gsub! 'Sp_', 'Special '
+    end
+    name
+  end
+
 end
