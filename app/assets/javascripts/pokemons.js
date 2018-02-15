@@ -9,10 +9,9 @@ $(document).on('turbolinks:load', function(){
     { id: 6, name: "speed"}
   ];
 
-  $("#pokemon_level").val(5);
+  set_initial_val("#pokemon_level", 5)
 
   var natures = gon.natures
-  console.log(natures)
   var natureSelected = natures[0];
 
   $("#pokemon_nature").change(function(){
@@ -28,19 +27,63 @@ $(document).on('turbolinks:load', function(){
     update_total_stats();
   })
 
+  if($("#pokemon_level").val() === ''){
+    $("#pokemon_level").val(0);
+    $("#pokemon_level").select();
+  }
 
   stats.forEach(function(stat) {
-    $(`#pokemon_iv_${stat.name}`).val(0);
+    set_initial_val(`#pokemon_iv_${stat.name}`, 0)
     $(`#pokemon_iv_${stat.name}`).keyup(function(){
-      console.log($("#pokemon_nature").val());
+      validateIvInput(stat.name)
       update_total_stats()
     });
-    $(`#pokemon_ev_${stat.name}`).val(0);
+    set_initial_val(`#pokemon_ev_${stat.name}`, 0)
     $(`#pokemon_ev_${stat.name}`).keyup(function(){
+      validateEvInput(stat.name)
       update_total_stats()
     });
   })
 
+
+  // EV/IV VALIDATION
+
+  function checkEvSum(){
+    var sum = 0;
+    sum = parseInt($("#pokemon_ev_attack").val()) + parseInt($("#pokemon_ev_defense").val()) + parseInt($("#pokemon_ev_sp_attack").val()) + parseInt($("#pokemon_ev_sp_defense").val()) + parseInt($("#pokemon_ev_speed").val()) + parseInt($("#pokemon_ev_hp").val());
+    if(sum > 510){
+      $("#ev_sum_error_message").removeClass("error-message-hidden");
+      $("#ev_sum_error_message").addClass("error-message");
+      $('#create_pokemon_btn').prop('disabled', true);
+    }
+    else if($("#ev_sum_error_message").hasClass("error-message")){
+      $("#ev_sum_error_message").removeClass("error-message");
+      $("#ev_sum_error_message").addClass("error-message-hidden");
+      $('#create_pokemon_btn').prop('disabled', false);
+    }
+  }
+
+  function validateEvInput(stat){
+    if($("#pokemon_ev_" + stat).val() > 252) {
+      $("#pokemon_ev_" + stat).val(252);
+    }
+    else if($("#pokemon_ev_" + stat).val() === '') {
+      $("#pokemon_ev_" + stat).val(0);
+    }
+    checkEvSum();
+  }
+
+  function validateIvInput(stat){
+    if($("#pokemon_iv_" + stat).val() > 31) {
+      $("#pokemon_iv_" + stat).val(31);
+    }
+    else if($("#pokemon_iv_" + stat).val() === '') {
+      $("#pokemon_iv_" + stat).val(0);
+    }
+  }
+
+
+  // STATS CALCULATION
   update_total_stats();
 
   function update_total_stats() {
@@ -114,6 +157,12 @@ $(document).on('turbolinks:load', function(){
       return 0.9
     }
     return 1;
+  }
+
+  function set_initial_val(element_id, val) {
+    if ($(element_id).val() === '') {
+      $(element_id).val(val);
+    }
   }
 
 })

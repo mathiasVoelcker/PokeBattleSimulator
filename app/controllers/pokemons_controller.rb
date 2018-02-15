@@ -37,7 +37,7 @@ class PokemonsController < ApplicationController
 
   # GET /pokemons/1/edit
   def edit
-    @pokemon_species = PokemonSpecy.find(params[:id])
+    @pokemon_species = @pokemon.pokemon_specy
     gon.base_hp = @pokemon_species.base_hp
     gon.base_attack = @pokemon_species.base_attack
     gon.base_defense = @pokemon_species.base_defense
@@ -45,8 +45,6 @@ class PokemonsController < ApplicationController
     gon.base_sp_defense = @pokemon_species.base_sp_defense
     gon.base_speed = @pokemon_species.base_speed
 
-
-    @pokemon = Pokemon.new
     @natures = Nature.all
     gon.natures = @natures
   end
@@ -55,13 +53,12 @@ class PokemonsController < ApplicationController
   # POST /pokemons.json
   def create
     @pokemon = Pokemon.new(pokemon_params)
-
+    puts '==================dentro do create=========================='
     respond_to do |format|
       if @pokemon.save
-        format.html { redirect_to @pokemon, notice: 'Pokemon was successfully created.' }
-        format.json { render :show, status: :created, location: @pokemon }
+        format.html { redirect_to '/', notice: 'Pokemon was successfully created.' }
       else
-        format.html { render :new }
+        format.html { render :index }
         format.json { render json: @pokemon.errors, status: :unprocessable_entity }
       end
     end
@@ -70,11 +67,13 @@ class PokemonsController < ApplicationController
   # PATCH/PUT /pokemons/1
   # PATCH/PUT /pokemons/1.json
   def update
+    puts '============================================'
     respond_to do |format|
       if @pokemon.update(pokemon_params)
-        format.html { redirect_to @pokemon, notice: 'Pokemon was successfully updated.' }
-        format.json { render :show, status: :ok, location: @pokemon }
+        puts '======================true no if======================'
+        format.html { redirect_to '/', notice: 'Pokemon was successfully updated.' }
       else
+        puts '======================false no if======================'
         format.html { render :edit }
         format.json { render json: @pokemon.errors, status: :unprocessable_entity }
       end
