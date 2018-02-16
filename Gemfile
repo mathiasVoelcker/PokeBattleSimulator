@@ -21,6 +21,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'bootstrap-sass'
+gem 'bootstrap-glyphicons'
 
 gem 'httparty'
 # Use CoffeeScript for .coffee assets and views
