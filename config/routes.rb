@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'simulate' => 'simulation#index'
+
+  get 'simulation/search'
+
   resources :pokemons
   root 'pokemons#index'
   get '/search' => 'pokemons#search'

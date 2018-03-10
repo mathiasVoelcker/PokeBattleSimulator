@@ -20,7 +20,9 @@
       <div class="panel-body">
         <div class="row">
           <div class="col-md-4 col-sm-4">
-            <img class="pokemon-card-img" src="<%= pokemon_image_url(@pokemon_species.id) %>">
+            <div class="image-div-big">
+              <img class="pokemon-img" src="<%= pokemon_image_url(@pokemon_species.name) %>">
+            </div>
             <div class="row">
               <span class="type type-<%= @pokemon_species.first_type.name %>">
                 <%= @pokemon_species.first_type.name.upcase %>

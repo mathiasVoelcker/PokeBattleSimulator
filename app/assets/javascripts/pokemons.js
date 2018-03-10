@@ -12,7 +12,9 @@ $(document).on('turbolinks:load', function(){
   set_initial_val("#pokemon_level", 5)
 
   var natures = gon.natures
-  var natureSelected = natures[0];
+  if(natures) {
+    var natureSelected = natures[0];
+  }
 
   $("#pokemon_nature").change(function(){
     natures.forEach(function(nature){
@@ -96,57 +98,69 @@ $(document).on('turbolinks:load', function(){
   }
 
   function calculate_hp() {
-    var iv = parseInt($('#pokemon_iv_hp').val());
-    var ev = parseInt($('#pokemon_ev_hp').val());
-    var level = parseInt($('#pokemon_level').val());
-    var hp = ((( gon.base_hp * 2 + iv + ( ev / 4 )) * level ) / 100 ) + level + 10;
-    $('#hp').val(hp);
-    return Math.ceil(hp);
+    if(gon.base_hp) {
+      var iv = parseInt($('#pokemon_iv_hp').val());
+      var ev = parseInt($('#pokemon_ev_hp').val());
+      var level = parseInt($('#pokemon_level').val());
+      var hp = ((( gon.base_hp * 2 + iv + ( ev / 4 )) * level ) / 100 ) + level + 10;
+      $('#hp').val(hp);
+      return Math.ceil(hp);
+    }
   }
 
   function calculate_attack() {
-    var iv = parseInt($('#pokemon_iv_attack').val());
-    var ev = parseInt($('#pokemon_ev_attack').val());
-    var level = parseInt($('#pokemon_level').val());
-    var attack = (((( gon.base_attack * 2 + iv  + ( ev / 4 )) * level ) / 100 ) + 5) * calculatNature(2);
-    $('#attack').val(attack);
-    return Math.ceil(attack);
+    if(gon.base_attack) {
+      var iv = parseInt($('#pokemon_iv_attack').val());
+      var ev = parseInt($('#pokemon_ev_attack').val());
+      var level = parseInt($('#pokemon_level').val());
+      var attack = (((( gon.base_attack * 2 + iv  + ( ev / 4 )) * level ) / 100 ) + 5) * calculatNature(2);
+      $('#attack').val(attack);
+      return Math.ceil(attack);
+    }
   }
 
   function calculate_defense() {
-    var iv = parseInt($('#pokemon_iv_defense').val());
-    var ev = parseInt($('#pokemon_ev_defense').val());
-    var level = parseInt($('#pokemon_level').val());
-    var defense = (((( gon.base_defense * 2 + iv  + ( ev / 4 )) * level ) / 100 ) + 5) * calculatNature(3);
-    $('#defense').val(defense);
-    return Math.ceil(defense);
+    if(gon.base_defense) {
+      var iv = parseInt($('#pokemon_iv_defense').val());
+      var ev = parseInt($('#pokemon_ev_defense').val());
+      var level = parseInt($('#pokemon_level').val());
+      var defense = (((( gon.base_defense * 2 + iv  + ( ev / 4 )) * level ) / 100 ) + 5) * calculatNature(3);
+      $('#defense').val(defense);
+      return Math.ceil(defense);
+    }
   }
 
   function calculate_sp_attack() {
-    var iv = parseInt($('#pokemon_iv_sp_attack').val());
-    var ev = parseInt($('#pokemon_ev_sp_attack').val());
-    var level = parseInt($('#pokemon_level').val());
-    var sp_attack = (((( gon.base_sp_attack * 2 + iv + ( ev / 4 )) * level ) / 100 ) + 5) * calculatNature(4);
-    $('#sp_attack').val(sp_attack);
-    return Math.ceil(sp_attack);
+    if(gon.base_sp_attack) {
+      var iv = parseInt($('#pokemon_iv_sp_attack').val());
+      var ev = parseInt($('#pokemon_ev_sp_attack').val());
+      var level = parseInt($('#pokemon_level').val());
+      var sp_attack = (((( gon.base_sp_attack * 2 + iv + ( ev / 4 )) * level ) / 100 ) + 5) * calculatNature(4);
+      $('#sp_attack').val(sp_attack);
+      return Math.ceil(sp_attack);
+    }
   }
 
   function calculate_sp_defense() {
-    var iv = parseInt($('#pokemon_iv_sp_defense').val());
-    var ev = parseInt($('#pokemon_ev_sp_defense').val());
-    var level = parseInt($('#pokemon_level').val());
-    var sp_defense = (((( gon.base_sp_defense * 2 + iv + ( ev  / 4 )) * level ) / 100 ) + 5) * calculatNature(5);
-    $('#sp_defense').val(sp_defense);
-    return Math.ceil(sp_defense);
+    if(gon.base_sp_defense) {
+      var iv = parseInt($('#pokemon_iv_sp_defense').val());
+      var ev = parseInt($('#pokemon_ev_sp_defense').val());
+      var level = parseInt($('#pokemon_level').val());
+      var sp_defense = (((( gon.base_sp_defense * 2 + iv + ( ev  / 4 )) * level ) / 100 ) + 5) * calculatNature(5);
+      $('#sp_defense').val(sp_defense);
+      return Math.ceil(sp_defense);
+    }
   }
 
   function calculate_speed() {
-    var iv = parseInt($('#pokemon_iv_speed').val());
-    var ev = parseInt($('#pokemon_ev_speed').val());
-    var level = parseInt($('#pokemon_level').val());
-    var speed = (((( gon.base_speed * 2 + iv + ( ev / 4 )) * level ) / 100 ) + 5) * calculatNature(6);
-    $('#speed').val(speed);
-    return Math.ceil(speed);
+    if(gon.base_speed) {
+      var iv = parseInt($('#pokemon_iv_speed').val());
+      var ev = parseInt($('#pokemon_ev_speed').val());
+      var level = parseInt($('#pokemon_level').val());
+      var speed = (((( gon.base_speed * 2 + iv + ( ev / 4 )) * level ) / 100 ) + 5) * calculatNature(6);
+      $('#speed').val(speed);
+      return Math.ceil(speed);
+    }
   }
 
   function calculatNature(stat_id) {

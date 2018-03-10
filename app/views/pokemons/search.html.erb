@@ -7,15 +7,15 @@
 <% if @pokemons_species != nil %>
 <div class="containter">
   <% @pokemons_species.each do |pokemon| %>
-  <div class="col-md-4 col-sm-6">
+  <div class="col-md-4 col-sm-6 col-xs-12">
     <%= link_to new_pokemon_path(:id => pokemon.id ) do %>
     <div class="panel panel-primary panel-link">
       <div class="panel-heading">
         <span>#<%= pokemon.id %> <%= pokemon.name.upcase %></span>
       </div>
       <div class="panel-body">
-        <div class="col-md-4 col-sm-4">
-          <img class="pokemon-card-img" src="<%= pokemon_image_url(pokemon.id) %>">
+        <div class="col-md-4 col-sm-4 image-div-small">
+          <img class="pokemon-img" src="<%= pokemon_image_url(pokemon.name) %>">
         </div>
         <div class="col-md-8 col-sm-8">
           <div class="row">
