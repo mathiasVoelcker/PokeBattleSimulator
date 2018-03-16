@@ -1,88 +1,149 @@
-<div class="col-md-5 col-sm-12">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <b>Attacking Pokemon</b>
-    </div>
-    <div class="panel-body">
-      <ul class="nav nav-pills">
-        <li class="active"><a href="#attacking-my-pokemon" data-toggle="tab">My Pokemon</a>
-        </li>
-        <li class=""><a href="#attacking-new-pokemon" data-toggle="tab">New Pokemon</a>
-        </li>
-        <li class=""><a href="#attacking-advanced" data-toggle="tab">Advanced</a>
-        </li>
-      </ul>
+<%= form_tag('/simulate', :method => 'get') do %>
+<div class="flex-row flex-row-align-strech">
+  <div class="col-md-5 col-sm-12 flex-row flex-row-align-strech flex-row-justify-center">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <b>Attacking Pokemon</b>
+      </div>
+      <div class="panel-body">
+        <ul class="nav nav-pills">
+          <li class="active"><a href="#attacking-my-pokemon" data-toggle="tab">My Pokemon</a>
+          </li>
+          <li class=""><a href="#attacking-new-pokemon" data-toggle="tab">New Pokemon</a>
+          </li>
+          <li class=""><a href="#attacking-advanced" data-toggle="tab">Advanced</a>
+          </li>
+        </ul>
 
-      <div class="tab-content">
-        <div class="tab-pane fade active in" id="attacking-my-pokemon">
-          <h4>Select your pokemon</h4>
-          <select id="select_attacking_pokemon">
-            <% @pokemons.each do |pokemon| %>
-              <option value="<%= pokemon.id %>">
-                <%= pokemon.pokemon_specy.name %> - level <%= pokemon.level %>
+        <div class="tab-content">
+          <div class="tab-pane fade active in" id="attacking-my-pokemon">
+            <h4>Select your pokemon</h4>
+              <%= select_tag :select_attacking_pokemon, "<option disabled selected> -- select a pokemon -- </option>".html_safe + options_for_select(@pokemons.collect{ |p| [p.title, p.id] }, params[:select_attacking_pokemon]),
+              {:class => 'form-control', onchange: "this.form.submit();" }  %>
+            <% if @attacking_pokemon != nil %>
+            <div class="left-div">
+              <div class="image-div image-div-small">
+                <img id="attacking_pokemon_img" class="pokemon-img" src="<%= pokemon_image_url(@attacking_pokemon.name) %>">
+              </div>
+              <h3 id="attaking_pokemon_stats_title"><%= @attacking_pokemon.pokemon_specy.name.capitalize %></h3>
+              <p id="attacking_pokemon_hp">Hp: <%= @attacking_pokemon.hp %></p>
+              <p id="attacking_pokemon_attack">Attack: <%= @attacking_pokemon.attack %></p>
+              <p id="attacking_pokemon_defense">Defense: <%= @attacking_pokemon.defense %></p>
+              <p id="attacking_pokemon_sp_attack">Special Attack: <%= @attacking_pokemon.sp_attack %></p>
+              <p id="attacking_pokemon_sp_defense">Special Defense: <%= @attacking_pokemon.sp_defense %></p>
+              <p id="attacking_pokemon_speed">Speed: <%= @attacking_pokemon.speed %></p>
+            </div>
+            <select id="select_attacking_move">
+              <% if  @attacking_pokemon.move_1 %>
+              <option value="<%= @attacking_pokemon.move_1.id %>">
+                <%= @attacking_pokemon.move_1.title %>
               </option>
+              <% end %>
+              <% if  @attacking_pokemon.move_2 %>
+              <option value="<%= @attacking_pokemon.move_2.id %>">
+                <%= @attacking_pokemon.move_2.title %>
+              </option>
+              <% end %>
+              <% if  @attacking_pokemon.move_3 %>
+              <option value="<%= @attacking_pokemon.move_3.id %>">
+                <%= @attacking_pokemon.move_3.title %>
+              </option>
+              <% end %>
+              <% if  @attacking_pokemon.move_4 %>
+              <option value="<%= @attacking_pokemon.move_4.id %>">
+                <%= @attacking_pokemon.move_4.title %>
+              </option>
+              <% end %>
+            </select>
             <% end %>
-          </select>
-          <div class="left-div">
-            <img id="attacking_pokemon_img" class="pokemon-img" src="">
-            <h3>Base Stats</h3>
-            <p id="attacking_pokemon_hp"></p>
-            <p id="attacking_pokemon_attack"></p>
-            <p id="attacking_pokemon_defense"></p>
-            <p id="attacking_pokemon_sp_attack"></p>
-            <p id="attacking_pokemon_sp_defense"></p>
-            <p id="attacking_pokemon_speed"></p>
+          </div>
+          <div class="tab-pane fade" id="attacking-new-pokemon">
+            <h4>Profile Tab</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+          <div class="tab-pane fade" id="attacking-advanced">
+            <h4>Messages Tab</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
           </div>
         </div>
-        <div class="tab-pane fade" id="attacking-new-pokemon">
-          <h4>Profile Tab</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-        <div class="tab-pane fade" id="attacking-advanced">
-          <h4>Messages Tab</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="col-md-2"></div>
-<div class="col-md-5 col-sm-12">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <b>Defending Pokemon</b>
-    </div>
-    <div class="panel-body">
-      <ul class="nav nav-pills">
-        <li class="active"><a href="#defending-my-pokemon" data-toggle="tab">My Pokemon</a>
-        </li>
-        <li class=""><a href="#defending-new-pokemon" data-toggle="tab">New Pokemon</a>
-        </li>
-        <li class=""><a href="#defending-advanced" data-toggle="tab">Advanced</a>
-        </li>
-      </ul>
+  <div class="col-md-2 flex-row flex-row-align-center flex-row-justify-center">
+    <button class="btn btn-danger" id="simulate_battle">
+      Simulate Battle
+    </button>
+  </div>
 
-      <div class="tab-content">
-        <div class="tab-pane fade active in" id="defending-my-pokemon">
-          <h4>Select your pokemon</h4>
-          <select>
-            <% @pokemons.each do |pokemon| %>
-              <option>
-                <%= pokemon.pokemon_specy.name %> - level <%= pokemon.level %>
+  <div class="col-md-5 col-sm-12 flex-row flex-row-align-strech flex-row-justify-center">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <b>Defending Pokemon</b>
+      </div>
+      <div class="panel-body">
+        <ul class="nav nav-pills">
+          <li class="active"><a href="#defending-my-pokemon" data-toggle="tab">My Pokemon</a>
+          </li>
+          <li class=""><a href="#defending-new-pokemon" data-toggle="tab">New Pokemon</a>
+          </li>
+          <li class=""><a href="#defending-advanced" data-toggle="tab">Advanced</a>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane fade active in" id="defending-my-pokemon">
+            <h4>Select your pokemon</h4>
+            <%= select_tag :select_defending_pokemon, "<option disabled selected> -- select a pokemon -- </option>".html_safe + options_for_select(@pokemons.collect{ |p| [p.title, p.id] }, params[:select_defending_pokemon]),
+            {:class => 'form-control', onchange: "this.form.submit();" }  %>
+            <% if @defending_pokemon != nil %>
+            <div class="left-div">
+              <div class="image-div image-div-small">
+                <img id="defending_pokemon_img" class="pokemon-img" src="<%= pokemon_image_url(@defending_pokemon.name) %>">
+              </div>
+              <h3 id="attaking_pokemon_stats_title"><%= @defending_pokemon.pokemon_specy.name.capitalize %></h3>
+              <p id="defending_pokemon_hp">Hp: <%= @defending_pokemon.hp %></p>
+              <p id="defending_pokemon_attack">Attack: <%= @defending_pokemon.attack %></p>
+              <p id="defending_pokemon_defense">Defense: <%= @defending_pokemon.defense %></p>
+              <p id="defending_pokemon_sp_attack">Special Attack: <%= @defending_pokemon.sp_attack %></p>
+              <p id="defending_pokemon_sp_defense">Special Defense: <%= @defending_pokemon.sp_defense %></p>
+              <p id="defending_pokemon_speed">Speed: <%= @defending_pokemon.speed %></p>
+            </div>
+            <!-- <select id="select_defending_move">
+              <% if  @defending_pokemon.move_1 %>
+              <option value="<%= @defending_pokemon.move_1.id %>">
+                <%= @defending_pokemon.move_1.title %>
               </option>
+              <% end %>
+              <% if  @defending_pokemon.move_2 %>
+              <option value="<%= @defending_pokemon.move_2.id %>">
+                <%= @defending_pokemon.move_2.title %>
+              </option>
+              <% end %>
+              <% if  @defending_pokemon.move_3 %>
+              <option value="<%= @defending_pokemon.move_3.id %>">
+                <%= @defending_pokemon.move_3.title %>
+              </option>
+              <% end %>
+              <% if  @defending_pokemon.move_4 %>
+              <option value="<%= @defending_pokemon.move_4.id %>">
+                <%= @defending_pokemon.move_4.title %>
+              </option>
+              <% end %>
+            </select> -->
             <% end %>
-          </select>
-        </div>
-        <div class="tab-pane fade" id="defending-new-pokemon">
-          <h4>Profile Tab</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-        <div class="tab-pane fade" id="defending-advanced">
-          <h4>Messages Tab</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+          <div class="tab-pane fade" id="defending-new-pokemon">
+            <h4>Profile Tab</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
+          <div class="tab-pane fade" id="defending-advanced">
+            <h4>Messages Tab</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+<% end %>

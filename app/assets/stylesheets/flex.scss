@@ -1,0 +1,13 @@
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  &-align-center {
+    align-items: center
+  }
+  &-align-strech {
+    align-items: stretch;
+  }
+  &-justify-center {
+    justify-content: center;
+  }
+}

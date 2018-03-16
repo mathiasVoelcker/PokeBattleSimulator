@@ -1,20 +1,20 @@
 // Place all the styles related to the Pokemons controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.image-div-small {
-  height: 100px;
+.image-div {
   max-width:100%;
   max-height:100%;
   margin:auto;
   display:block;
-}
-
-.image-div-big {
-  height: 250px;
-  max-width:100%;
-  max-height:100%;
-  margin:auto;
-  display:block;
+  &-small {
+    height: 100px;
+  }
+  &-medium {
+    height: 200px;
+  }
+  &-height {
+    height: 250px;
+  }
 }
 
 .pokemon-img {

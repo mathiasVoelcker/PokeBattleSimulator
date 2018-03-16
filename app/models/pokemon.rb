@@ -1,10 +1,19 @@
 class Pokemon < ApplicationRecord
-  belongs_to :move_1, foreign_key: 'move_1_id', :class_name => "PokemonSpeciesMove", optional: true
-  belongs_to :move_2, foreign_key: 'move_2_id', :class_name => "PokemonSpeciesMove", optional: true
-  belongs_to :move_3, foreign_key: 'move_3_id', :class_name => "PokemonSpeciesMove", optional: true
-  belongs_to :move_4, foreign_key: 'move_4_id', :class_name => "PokemonSpeciesMove", optional: true
+  belongs_to :move_1, foreign_key: 'move_1_id', :class_name => "Move", optional: true
+  # has_one :move_1, :through => :move_1_relation,  :class_name => "Move"
+  belongs_to :move_2, foreign_key: 'move_2_id', :class_name => "Move", optional: true
+  belongs_to :move_3, foreign_key: 'move_3_id', :class_name => "Move", optional: true
+  belongs_to :move_4, foreign_key: 'move_4_id', :class_name => "Move", optional: true
   belongs_to :pokemon_specy
   belongs_to :nature
+
+  def title
+    self.pokemon_specy.name + ' - level ' + self.level.to_s
+  end
+
+  def name
+    self.pokemon_specy.name
+  end
 
   def attack_stat
     return ((((2*self.pokemon_specy.attack+self.iv_attack+(self.ev_attack/4.nonzero?))*self.level/100)+5)*nature_modifier("Attack")).to_int
